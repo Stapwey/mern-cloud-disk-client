@@ -4,7 +4,7 @@ import {createDir, getFiles, uploadFile} from "../../actions/file";
 import FileList from "./fileList/FileList";
 import './disk.css'
 import Popup from "./Popup";
-import {setCurrentDir, setPopupDisplay} from "../../reducers/fileReducer";
+import {setCurrentDir, setFileView, setPopupDisplay} from "../../reducers/fileReducer";
 import Uploader from "./uploader/Uploader";
 
 const Disk = () => {
@@ -70,11 +70,13 @@ const Disk = () => {
                         <label htmlFor="disk__upload-input" className="disk__upload-label">Загрузить файл</label>
                         <input multiple={true} onChange={(event)=> fileUploadHandler(event)} type="file" id="disk__upload-input" className="disk__upload-input"/>
                     </div>
-                    <select value={sort} onChange={(e) => setSort(e.target.value) } className='disk_select'>
+                    <select value={sort} onChange={(e) => setSort(e.target.value) } className='disk__select'>
                         <option value="name">По имени</option>
                         <option value="type">По типу</option>
                         <option value="date">По дате</option>
                     </select>
+                    <button className="disk__plate" onClick={() => dispatch(setFileView('plate'))}/>
+                    <button className="disk__list" onClick={() => dispatch(setFileView('list'))}/>
                 </div>
                 <FileList/>
                 <Popup/>
